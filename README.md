@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+#Introduction
+
 This is a basic React-Redux Blog App with a great UI and utilizes Redux-Form React-Router & React-Redux.
 
 ### Code Splitting
