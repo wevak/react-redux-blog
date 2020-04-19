@@ -1,7 +1,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
 
-const ArticleForm = ({ onSubmitArticle, handleSubmit, submitting, pristine }) => {
+let ArticleForm = ({ onSubmitArticle, handleSubmit}) => {
   return (
     <div className="modal fade" id="articleForm" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -50,7 +51,7 @@ const ArticleForm = ({ onSubmitArticle, handleSubmit, submitting, pristine }) =>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" className="btn btn-primary" disabled={pristine || submitting}>Submit</button>
+              <button type="submit" className="btn btn-primary" >Submit</button>
             </div>
           </form>
         </div>
@@ -59,6 +60,17 @@ const ArticleForm = ({ onSubmitArticle, handleSubmit, submitting, pristine }) =>
   )
 }
 
-export default reduxForm({
-  form: 'articleForm'
+ArticleForm = reduxForm({
+  form: 'articleForm',
+  enableReinitialize: true
 })(ArticleForm)
+
+ArticleForm = connect(state => {
+  const { articles } = state
+  return {
+    initialValues: {
+      ...articles.article,
+    }
+  }
+})(ArticleForm)
+export default ArticleForm;

@@ -15,7 +15,7 @@ const ArticleContainer = props => {
 }
 
 const mapStateToProps = state => ({
-  articles: state.articles.filter(article => article.author.id === state.session.currentlyLoggedIn.id)
+  articles: state.articles.articles.filter(article => article.author.id === state.session.currentlyLoggedIn.id)
 })
 
 export default connect(mapStateToProps)(ArticleContainer)

@@ -1,8 +1,9 @@
 import React from 'react'
 import ArticleForm from '../components/ArticleForm'
-import { articleCreate } from '../redux'
+import { articleCreate, articleUpdate } from '../redux'
 import { connect } from 'react-redux'
 import $ from 'jquery'
+import { reset } from 'redux-form'
 
 class ArticleFormContainer extends React.Component{
   constructor(props){
@@ -10,11 +11,19 @@ class ArticleFormContainer extends React.Component{
     this.handleArticleForm = this.handleArticleForm.bind(this);
   }
   handleArticleForm(values){
-    this.props.dispatch(articleCreate({
-      article: values,
-      user: this.props.user
-    }))
+    if(this.props.editing.id === 'new'){
+      this.props.dispatch(articleCreate({
+        article: values,
+        user: this.props.user
+      }))
+    }else{
+      this.props.dispatch(articleUpdate({
+        article: values,
+        user: this.props.user
+      }))
+    }
     $('#articleForm').modal('hide');
+    this.props.dispatch(reset("articleForm"))
   }
   render(){
     return (
@@ -26,7 +35,8 @@ class ArticleFormContainer extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  user: state.session.currentlyLoggedIn
+  user: state.session.currentlyLoggedIn,
+  editing: state.articles.editing
 })
 
 export default connect(mapStateToProps)(ArticleFormContainer)

@@ -7,14 +7,6 @@ const initialState = {
       username: 'demo',
       email: 'demo@email.org',
       password: 'demo',
-    },
-    {
-      id: '100',
-      firstName: 'vivek',
-      lastName: 'mahajan',
-      username: 'wevak',
-      email: 'wevak@email.com',
-      password: 'wevak',
     }
   ],
   currentlyRegistered: {
@@ -76,7 +68,7 @@ const sessionReducer = (state = initialState, action) => {
     }
     case 'LOGOUT':
       return {
-        /* ...state,
+        ...state,
         currentlyRegistered: {
           id: '',
           username: '',
@@ -87,7 +79,7 @@ const sessionReducer = (state = initialState, action) => {
           id: '',
           firstName: '',
           error: '',
-        } */
+        }
       };
     default:
       return state;

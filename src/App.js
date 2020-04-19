@@ -35,10 +35,7 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.handleRegistration = this.handleRegistration.bind(this);
   }
- /*  static getDerivedStateFromProps(props, state) {
-    console.log(props);
-    return state;
-  } */
+
   handleLogin(e) {
     e.preventDefault();
     const username = this.state.username;
@@ -75,24 +72,18 @@ class App extends React.Component {
     this.props.dispatch(userLogout(this.props.session.currentlyLoggedIn.id));
   }
   render() {
-    /* const dismissableTopAlertUponRegistration = !this.props.session.currentlyRegistered.firstName
-      ? null
-      : <Alert username={this.props.session.currentlyRegistered.firstName} action={"registered"} />;
-    const dismissableTopAlertUponLogin = !this.props.session.currentlyLoggedIn.firstName
-      ? null
-      : <Alert username={this.props.session.currentlyLoggedIn.firstName} action={"logged in"} />; */
     const { isLogged } = this.props
     return (
       <Router>
-        {isLogged ? <AuthorizedRoutes /> :  <PublicRoutes />}
+        {isLogged ? <AuthorizedRoutes /> : <PublicRoutes />}
       </Router>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const {session} = state
-  return{
+  const { session } = state
+  return {
     isLogged: session.isLogged
   }
 }
