@@ -36,7 +36,7 @@ class ArticleFormContainer extends React.Component{
 
 const mapStateToProps = state => ({
   user: state.session.currentlyLoggedIn,
-  editing: state.articles.editing
+  editing: state.article.editing
 })
 
 export default connect(mapStateToProps)(ArticleFormContainer)

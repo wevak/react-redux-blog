@@ -2,8 +2,9 @@ import React from 'react';
 import Toast from './CustomToast';
 import { Field, reduxForm } from 'redux-form'
 
-const RegistrationForm = ({onSignup, handleSubmit, pristine, submitting}) => {
-  return(
+const RegistrationForm = (props) => {
+  const { onSignup, handleSubmit } = props;
+  return (
     <div className="modal fade" id="signup" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered" role="document">
         <form onSubmit={handleSubmit(onSignup)}>
@@ -79,9 +80,9 @@ const RegistrationForm = ({onSignup, handleSubmit, pristine, submitting}) => {
               </div>
             </div>
             <div className="modal-footer">
-              <Toast message={"Please enter matching passwords"}/>
+              <Toast message={"Please enter matching passwords"} />
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" className="btn btn-primary" disabled={pristine || submitting}>Sign Up</button>
+              <button type="submit" className="btn btn-primary">Sign Up</button>
             </div>
           </div>
         </form>

@@ -1,34 +1,36 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { articleUpdate, articleDelete } from '../redux'
-// import ArticleLink from '../components/ArticleLink'
 import $ from 'jquery'
 
-class ArticleTitles extends React.Component{
+class ArticleTitles extends React.Component {
   constructor(props) {
     super(props);
     this.handleArticleUpdate = this.handleArticleUpdate.bind(this)
     this.handleArticleDelete = this.handleArticleDelete.bind(this)
     this.handleArticleFormShow = this.handleArticleFormShow.bind(this)
   }
-  handleArticleDelete(id){
+  handleArticleDelete(id) {
     this.props.dispatch(articleDelete(id))
   }
-  handleArticleUpdate(id){
+  handleArticleUpdate(id) {
     this.props.dispatch(articleUpdate(id))
   }
-  handleArticleFormShow(articleId){
-    this.props.dispatch({type: 'ARTICLE_LOAD', payload:{articleId}})
+  handleArticleFormShow(articleId) {
+    this.props.dispatch({ type: 'ARTICLE_LOAD', payload: { articleId } })
     $("#articleForm").modal('show');
   }
-  render(){
+  render() {
+    const { articles } = this.props;
+    const widthStyle = { width: 240 }
     return (
-      <div className="d-flex position-fixed bg-light" style={{ left: 190, height: "100%", maxWidth: 240, backgroundColor: "#e5e5e5"}}>
+      <div className="d-flex position-fixed bg-light" style={{ left: 190, height: "100%", maxWidth: 240, backgroundColor: "#e5e5e5" }}>
         <div className="list-group list-group-flush" id="list-tab" role="tablist">
-          {this.props.articles.map((article, indx) => {
+          {articles.map((article, indx) => {
             const active = indx !== 0 ? '' : 'active' //First article in the list is set active
             return (
-              <a className={`d-flex justify-content-between list-group-item list-group-item-action ${active}`} key={article.id} id="list-settings-list" data-toggle="list" href={`#list-${article.id}`} role="tab" aria-controls="settings">
+              <a className={`d-flex justify-content-between list-group-item list-group-item-action ${active}`} key={article.id} id="list-settings-list" data-toggle="list" href={`#list-${article.id}`} role="tab" aria-controls="settings"
+                style={widthStyle}>
                 <i className="lar la-star pt-1 mr-1"></i>
                 <div>{article.title}</div>
                 <div className="d-flex flex-column">
@@ -38,13 +40,6 @@ class ArticleTitles extends React.Component{
               </a>
             )
           })}
-          
-          {/* <ArticleLink
-            onArticleDelete = {this.handleArticleDelete}
-            onArticleFormShow = {this.handleArticleFormShow}
-            article = {article}
-            active = {active}
-          /> */}
         </div>
       </div>
     )
@@ -52,7 +47,7 @@ class ArticleTitles extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  articles: state.articles.articles.filter(article => article.author.id === state.session.currentlyLoggedIn.id)
+  articles: state.article.articles.filter(article => article.author.id === state.session.currentlyLoggedIn.id)
 })
 
 export default connect(mapStateToProps)(ArticleTitles)

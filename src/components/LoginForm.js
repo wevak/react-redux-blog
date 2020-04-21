@@ -2,7 +2,7 @@ import React from 'react';
 import Toast from './CustomToast'
 import { Field, reduxForm } from 'redux-form'
 
-const Login = ({ onLogin, handleSubmit, pristine, submitting, errorMessage }) => {
+const Login = ({ onLogin, handleSubmit, errorMessage }) => {
   return (
     <div className="modal fade" id="login" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered" role="document">
@@ -39,7 +39,7 @@ const Login = ({ onLogin, handleSubmit, pristine, submitting, errorMessage }) =>
             <div className="modal-footer">
               <Toast message={errorMessage} />
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" className="btn btn-primary" disabled={pristine || submitting}>Login</button>
+              <button type="submit" className="btn btn-primary">Login</button>
             </div>
           </form>
         </div>

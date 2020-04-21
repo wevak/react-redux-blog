@@ -11,7 +11,8 @@ class Login extends React.Component {
   }
   handleLogin(values) {
     this.props.dispatch(userLogin(values));
-    if (this.props.login.error !== ""){
+    // debugger
+    if (this.props.login.error){
       $("#customToast").toast('show');
     } else {
       $("#customToast").toast('hide');
@@ -22,7 +23,7 @@ class Login extends React.Component {
     return (
       <LoginForm 
         onLogin={this.handleLogin}
-        errorMessage={this.props.error}
+        errorMessage={this.props.login.error}
       />
     )
   }

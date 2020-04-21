@@ -24,7 +24,6 @@ let ArticleForm = ({ onSubmitArticle, handleSubmit}) => {
                   type="text"
                   placeholder="Article Title"
                 />
-                {/* <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" /> */}
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputCategory">Category</label>
@@ -46,7 +45,6 @@ let ArticleForm = ({ onSubmitArticle, handleSubmit}) => {
                   type="textarea"
                   placeholder="Article description"
                 />
-                {/* <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> */}
               </div>
             </div>
             <div className="modal-footer">
@@ -66,10 +64,10 @@ ArticleForm = reduxForm({
 })(ArticleForm)
 
 ArticleForm = connect(state => {
-  const { articles } = state
+  const { article } = state
   return {
     initialValues: {
-      ...articles.article,
+      ...article.article,
     }
   }
 })(ArticleForm)

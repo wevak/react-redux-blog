@@ -3,7 +3,7 @@ const defaultState = {
   articles: [
     {
       id: 'abcd-efgh-ijkl',
-      title: 'Developer blogs to follow',
+      title: 'Markdown previewer is ready',
       description: 'Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.',
       category: 'Default',
       author: {
@@ -13,7 +13,7 @@ const defaultState = {
     },
     {
       id: 'mnop-qrst-uvwx',
-      title: 'Welcome to takearticle!',
+      title: 'Enter markdown input!',
       description: 'Cupidatat quis ad sint excepteur laborum in esse qui. Et excepteur consectetur ex nisi eu do cillum ad laborum. Mollit et eu officia dolore sunt Lorem culpa qui commodo velit ex amet id ex. Officia anim incididunt laboris deserunt anim aute dolor incididunt veniam aute dolore do exercitation. Dolor nisi culpa ex ad irure in elit eu dolore. Ad laboris ipsum reprehenderit irure non commodo enim culpa commodo veniam incididunt veniam ad.',
       category: 'Edited',
       author: {
@@ -51,14 +51,15 @@ const articleReducer = (state = defaultState, action) => {
         ],
         editing: { id: false }
       }
-    case ARTICLE_READ: {
-      return state
-    }
+    case ARTICLE_READ: return state
     case ARTICLE_DELETE:
-      return state.articles.filter(article => {
+      return {
+        ...state,
+        articles: state.articles.filter(article => {
         // article.id === action.payload.id && console.log(`${article.id} ${action.payload.id}`)
-        return article.id !== action.payload.id
-      });
+          return article.id !== action.payload.id
+        })
+      }
     case ARTICLE_UPDATE:         //return all articles interpolating updated article
       return {
         ...state,
@@ -78,8 +79,6 @@ const articleReducer = (state = defaultState, action) => {
       return {
         ...state,
         article: state.articles.find(article => {
-          // if (article.id === action.payload.articleId)
-            // return article
           return article.id === action.payload.articleId
         })
       }

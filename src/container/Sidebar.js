@@ -15,12 +15,13 @@ class Sidebar extends React.Component{
     $('#articleForm').modal('show')
   }
   render(){
+    const { logInUser, categories } = this.props
     return (
       <div>
         <div className="d-flex flex-column position-fixed bg-dark" style={{ height: "100%", width: 190 }}>
           <ul className="nav d-flex justify-content-around mt-3 text-white">
             <li className="nav-item">
-              <button className="border-0 nav-link text-white bg-dark" /* data-toggle="modal" */ /* data-target="#articleForm" */ onClick={() => this.handleEdit("new")}>
+              <button className="border-0 nav-link text-white bg-dark" onClick={() => this.handleEdit("new")}>
                 <i className="las la-plus"></i>
               </button>
             </li>
@@ -34,31 +35,31 @@ class Sidebar extends React.Component{
                 <i className="las la-cog"></i>
               </button>
               <div className="dropdown-menu dropdown-menu-right">
-                <button className="dropdown-item" onClick={() => this.props.dispatch(userLogout(this.props.logInUser))}>Logout</button>
+                <button className="dropdown-item" onClick={() => this.props.dispatch(userLogout(logInUser))}>Logout</button>
               </div>
             </li>
           </ul>
           <ul className="nav flex-column my-3 text-white">
             <li className="nav-item">
-              <button className="btn btn-block btn-dark text-left active" href="./">
+              <button className="btn btn-block btn-dark text-left">
                 <i className="las mr-2 la-book mr-2"></i>
                 All Articles
               </button>
             </li>
             <li className="nav-item">
-              <button className="btn btn-block btn-dark text-left" href="./">
+              <button className="btn btn-block btn-dark text-left">
                 <i className="las mr-2 la-user"></i>
                 Profile
               </button>
             </li>
             <li className="nav-item">
-              <button className="btn btn-block btn-dark text-left" href="./">
+              <button className="btn btn-block btn-dark text-left">
                 <i className="las mr-2 la-star"></i>
                 Favourites
               </button>
             </li>
             <li className="nav-item">
-              <button className="btn btn-block btn-dark text-left" href="./">
+              <button className="btn btn-block btn-dark text-left">
                 <i className="las mr-2 la-trash-alt"></i>
                 Trash
               </button>
@@ -67,10 +68,10 @@ class Sidebar extends React.Component{
           <div className="mb-2">
             <div className="text-secondary ml-3 mb-1">Categories</div>
             <ul className="nav flex-column">
-              {this.props.categories.map(category => {
+              {categories.map((category, indx) => {
                 return (
-                  <li className="nav-item">
-                    <button className="btn btn-block btn-dark text-left" href="./">
+                  <li key={indx} className="nav-item">
+                    <button className="btn btn-block btn-dark text-left">
                       <i className="las mr-2 la-folder"></i>
                       {category}
                     </button>
@@ -90,7 +91,7 @@ class Sidebar extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  categories: [...new Set(state.articles.articles.map(article => {
+  categories: [...new Set(state.article.articles.map(article => {
     return article.category
   }))],
   logInUser: state.session.currentlyLoggedIn.id

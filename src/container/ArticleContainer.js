@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import Article from '../components/Article'
 
 const ArticleContainer = props => {
+  const { articles } = props
   return (
     <div className="position-absolute p-3" style={{ left: 430, lineHeight: "1.7rem" }}>
       <div className="tab-content" id="nav-tabContent">
-        {props.articles.map((article, indx) => {
+        {articles.map((article, indx) => {
           return <Article article={article} indx={indx} />
         })}
       </div>
@@ -15,7 +16,7 @@ const ArticleContainer = props => {
 }
 
 const mapStateToProps = state => ({
-  articles: state.articles.articles.filter(article => article.author.id === state.session.currentlyLoggedIn.id)
+  articles: state.article.articles.filter(article => article.author.id === state.session.currentlyLoggedIn.id)
 })
 
 export default connect(mapStateToProps)(ArticleContainer)

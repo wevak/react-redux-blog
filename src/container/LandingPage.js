@@ -5,6 +5,9 @@ import Login from './Login'
 import Signup from './Signup'
 
 const LandingPage = () => {
+  const textShadow = {
+    textShadow: "1px 1px 2px black, 0 0 1em black, 0 0 0.2em black"
+  }
   return (
     <div className="d-flex flex-column">
       <Navbar />
@@ -24,14 +27,14 @@ const LandingPage = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img className="d-block w-100" src={images.girlBicycle} alt="Girl on Bicycle"/>
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption d-none d-md-block" style={textShadow}>
               <h2>TEMPLATE</h2>
               <p>Template: Featured Image (No Sidebar Layout)</p>
             </div>
           </div>
           <div className="carousel-item">
             <img className="d-block w-100" src={images.roofTop} alt="Rooftop"/>
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption d-none d-md-block" style={textShadow}>
               <h2>TEMPLATE</h2>
               <p>
                 Template: Featured Image (Full Width No Sidebar Layout)
@@ -40,14 +43,14 @@ const LandingPage = () => {
           </div>
           <div className="carousel-item">
             <img className="d-block w-100" src={images.tools} alt="Tools"/>
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption d-none d-md-block" style={textShadow}>
               <h2>TEMPLATE</h2>
               <p>Template: More Tag</p>
             </div>
           </div>
           <div className="carousel-item">
             <img className="d-block w-100" src={images.greenBush} alt="Green Bush" />
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption d-none d-md-block" style={textShadow}>
               <h2>TEMPLATE</h2>
               <p>Template Excerpt(Defined)</p>
             </div>

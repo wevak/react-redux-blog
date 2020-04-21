@@ -5,7 +5,7 @@ import articleReducer from './reducers/articleReducer'
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  articles: articleReducer,
+  article: articleReducer,
   form: formReducer
 })
 
