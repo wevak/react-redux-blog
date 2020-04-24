@@ -2,14 +2,15 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
-let ArticleForm = ({ onSubmitArticle, handleSubmit}) => {
+let ArticleForm = (props) => {
+  const { onSubmitArticle, handleSubmit, onReset} = props
   return (
     <div className="modal fade" id="articleForm" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLongTitle">Article</h5>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" className="close" onClick={onReset} data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -48,7 +49,7 @@ let ArticleForm = ({ onSubmitArticle, handleSubmit}) => {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-secondary" onClick={onReset} data-dismiss="modal">Close</button>
               <button type="submit" className="btn btn-primary" >Submit</button>
             </div>
           </form>
@@ -67,7 +68,7 @@ ArticleForm = connect(state => {
   const { article } = state
   return {
     initialValues: {
-      ...article.article,
+      ...article.tempArticle,
     }
   }
 })(ArticleForm)

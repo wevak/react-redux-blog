@@ -13,13 +13,7 @@ class Registration extends React.Component{
     if (values.password !== values.confirmPassword) {
       $("#customToast").toast('show');      //Show message upon unmatching password inputs
     } else {
-      this.props.dispatch(userRegistration({
-        firstName: values.firstName,
-        lastName: values.lastName,
-        username: values.username,
-        email: values.email,
-        password: values.password,
-      }));
+      this.props.dispatch(userRegistration(values))
       $("#signup").modal('hide');
     }
   }

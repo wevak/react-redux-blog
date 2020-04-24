@@ -14,7 +14,7 @@ const LandingPage = () => {
       <div className="jumbotron jumbotron-fluid bg-white">
         <div className="d-flex flex-column align-items-center">
           <img src={images.logo} className="p-2" alt="Activello" />
-          <p className="lead">Just another colorlib.com site</p>
+          <p className="lead">Just another site</p>
         </div>
       </div>
       <section id="carouselExampleIndicators" className="carousel slide my-4" data-ride="carousel">

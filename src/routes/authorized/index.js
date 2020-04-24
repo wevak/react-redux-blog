@@ -1,9 +1,19 @@
 import React from 'react'
-import DashboardRouter from './dashboardRoute'
+import ArticleRouter from './articleRoute'
+import Sidebar from '../../container/Sidebar'
+import ProfileRouter from './profileRoute'
+import FavouritesRoute from './favouritesRoute'
+import TrashRoute from './trashRoute'
 
 function AuthorizedRoutes() {
   return (
-    <DashboardRouter />
+    <div>
+      <Sidebar />
+      <ArticleRouter />
+      <ProfileRouter />
+      <FavouritesRoute />
+      <TrashRoute />
+    </div>
   )
 }
 

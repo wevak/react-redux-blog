@@ -13,6 +13,9 @@ const images = {
   urban150x150: require('./150x150/BuildingRiverBridge-150x150.webp'),
   greenBush:require('./Carousel/GreenBush.jpg'),
   greenBush330x220: require('./330x220/Bush-330x220.jpg'),
+  userProfileIcon: require('./profile/user-profile-icon.png'),
+  userProfile: require('./profile/user-profile.jpg'),
+  defaultUserProfile: require('./profile/default-user-profile.png')
 }
 
 export default images

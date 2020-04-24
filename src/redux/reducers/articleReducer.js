@@ -1,4 +1,7 @@
-import { ARTICLE_CREATE, ARTICLE_READ, ARTICLE_UPDATE, ARTICLE_DELETE, ARTICLE_LOAD, ARTICLE_EDIT } from '../actions/articleActions'
+import {
+   ARTICLE_CREATE, ARTICLE_READ, ARTICLE_UPDATE, ARTICLE_FAVOURITE,
+   ARTICLE_DELETE, ARTICLE_LOAD, ARTICLE_RESET, ARTICLE_TRASH_READ } from '../actions/articleActions'
+
 const defaultState = {
   articles: [
     {
@@ -6,6 +9,7 @@ const defaultState = {
       title: 'Markdown previewer is ready',
       description: 'Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.',
       category: 'Default',
+      favourite: false,
       author: {
         id: '108',
         name: 'demo'
@@ -16,14 +20,25 @@ const defaultState = {
       title: 'Enter markdown input!',
       description: 'Cupidatat quis ad sint excepteur laborum in esse qui. Et excepteur consectetur ex nisi eu do cillum ad laborum. Mollit et eu officia dolore sunt Lorem culpa qui commodo velit ex amet id ex. Officia anim incididunt laboris deserunt anim aute dolor incididunt veniam aute dolore do exercitation. Dolor nisi culpa ex ad irure in elit eu dolore. Ad laboris ipsum reprehenderit irure non commodo enim culpa commodo veniam incididunt veniam ad.',
       category: 'Edited',
+      favourite: true,
       author: {
         id: '108',
         name: 'demo'
       }
     }
   ],
-  article: {},
-  editing: { id: false }
+  trash: [],
+  tempArticle: {
+    id: '',
+    title: '',
+    description: '',
+    category: '',
+    favourite: false,
+    author: {
+      id: '',
+      name: ''
+    }
+  }
 }
 
 const articleReducer = (state = defaultState, action) => {
@@ -43,23 +58,31 @@ const articleReducer = (state = defaultState, action) => {
               .map(word => word.charAt(0).toUpperCase() + word.slice(1))
               .join(" "),           //Sanitize input
             description: action.payload.article.description,
+            favourite: false,
             author: {
               id: action.payload.user.id,
               name: action.payload.user.firstName
             }
           }
-        ],
-        editing: { id: false }
+        ]
       }
-    case ARTICLE_READ: return state
-    case ARTICLE_DELETE:
+
+    case ARTICLE_READ:
       return {
         ...state,
-        articles: state.articles.filter(article => {
-        // article.id === action.payload.id && console.log(`${article.id} ${action.payload.id}`)
-          return article.id !== action.payload.id
+        tempArticle: state.articles.find(article => {
+          return article.id === action.payload.id
         })
-      }
+    }
+
+    case ARTICLE_TRASH_READ:
+      return {
+        ...state,
+        tempArticle: state.trash.find(article => {
+          return article.id === action.payload.id
+        })
+    }
+    
     case ARTICLE_UPDATE:         //return all articles interpolating updated article
       return {
         ...state,
@@ -72,20 +95,56 @@ const articleReducer = (state = defaultState, action) => {
               description: action.payload.article.description,
               category: action.payload.article.category
             }
-        }),
-        editing: { id: false }
+        })
       }
+      
+    case ARTICLE_DELETE:
+      return {
+        ...state,
+        articles: state.articles.filter(article => {
+        // article.id === action.payload.id && console.log(`${article.id} ${action.payload.id}`)
+          return article.id !== action.payload.id
+        }),
+        trash: [
+          ...state.trash,
+          state.articles.find(article => article.id === action.payload.id)
+        ]
+      }
+
+    case ARTICLE_FAVOURITE:
+      return {
+        ...state,
+        articles: state.articles.map(article => {
+          return article.id !== action.payload.articleId
+            ? article
+            : {
+              ...article,
+              favourite: !article.favourite
+            }
+        })
+      }
+
     case ARTICLE_LOAD:
       return {
         ...state,
-        article: state.articles.find(article => {
+        tempArticle: state.articles.find(article => {
           return article.id === action.payload.articleId
         })
       }
-    case ARTICLE_EDIT:
+      
+    case ARTICLE_RESET:
       return {
         ...state,
-        editing: { id: action.payload.id }
+        tempArticle: {
+          id: '',
+          title: '',
+          description: '',
+          category: '',
+          author: {
+            id: '',
+            name: ''
+          }
+        }
       }
     default: return state
   }

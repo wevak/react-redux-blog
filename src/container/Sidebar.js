@@ -3,15 +3,14 @@ import $ from 'jquery'
 import ArticleFormContainer from './ArticleFormContainer'
 import { connect } from 'react-redux'
 import { userLogout } from '../redux';
-
+import { NavLink } from 'react-router-dom'
 
 class Sidebar extends React.Component{
   constructor(props){
     super(props);
-    this.handleEdit = this.handleEdit.bind(this);
+    this.handleFormShow = this.handleFormShow.bind(this);
   }
-  handleEdit(id){
-    this.props.dispatch({type: 'ARTICLE_EDIT', payload: {id}})
+  handleFormShow(){
     $('#articleForm').modal('show')
   }
   render(){
@@ -21,7 +20,7 @@ class Sidebar extends React.Component{
         <div className="d-flex flex-column position-fixed bg-dark" style={{ height: "100%", width: 190 }}>
           <ul className="nav d-flex justify-content-around mt-3 text-white">
             <li className="nav-item">
-              <button className="border-0 nav-link text-white bg-dark" onClick={() => this.handleEdit("new")}>
+              <button className="border-0 nav-link text-white bg-dark" onClick={this.handleFormShow}>
                 <i className="las la-plus"></i>
               </button>
             </li>
@@ -41,28 +40,40 @@ class Sidebar extends React.Component{
           </ul>
           <ul className="nav flex-column my-3 text-white">
             <li className="nav-item">
-              <button className="btn btn-block btn-dark text-left">
+              <NavLink to="/" exact 
+                activeClassName="active"
+                className="btn btn-block btn-dark text-left"
+              >
                 <i className="las mr-2 la-book mr-2"></i>
                 All Articles
-              </button>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <button className="btn btn-block btn-dark text-left">
+              <NavLink to="/profile" exact
+                activeClassName="active"
+                className="btn btn-block btn-dark text-left"
+              >
                 <i className="las mr-2 la-user"></i>
                 Profile
-              </button>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <button className="btn btn-block btn-dark text-left">
+              <NavLink to="/favourites" exact
+                activeClassName="active"
+                className="btn btn-block btn-dark text-left" 
+              >
                 <i className="las mr-2 la-star"></i>
                 Favourites
-              </button>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <button className="btn btn-block btn-dark text-left">
+              <NavLink to="/trash" exact
+                activeClassName="active"
+                className="btn btn-block btn-dark text-left"
+              >
                 <i className="las mr-2 la-trash-alt"></i>
                 Trash
-              </button>
+              </NavLink>
             </li>
           </ul>
           <div className="mb-2">
