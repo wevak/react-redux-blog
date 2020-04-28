@@ -8,8 +8,8 @@ const TrashTitles = props => {
   return (
     <div className="d-flex position-fixed bg-light" style={{ left: 190, height: "100%", maxWidth: 240, backgroundColor: "#e5e5e5" }}>
       <div className="list-group">
-        {articles.map((article, indx) => {
-          const active = indx !== 0 ? '' : 'active' //First article is set active by default on initial load
+        {articles.map(article => {
+          const active = props.activeArticleTitleId !== article.id ? '' : 'active'
           return (
             <button key={article.id}
               onClick={() => props.dispatch(articleTrashRead(article.id))}
@@ -28,7 +28,8 @@ const TrashTitles = props => {
 const mapStateToProps = state => {
   const { article, session } = state
   return {
-    articles: article.trash.filter(article => article.author.id === session.currentlyLoggedIn.id)
+    articles: article.trash.filter(article => article.author.id === session.currentlyLoggedIn.id),
+    activeArticleTitleId: article.tempArticle.id
   }
 }
 

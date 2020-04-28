@@ -32,10 +32,13 @@ class ArticleTitles extends React.Component {
         <div className="list-group list-group-flush" id="list-tab" role="tablist">
           {articles.map((article, indx) => {
             const active = indx !== 0 ? '' : 'active' //First article in the list is set active
+            const favouriteStyle = !article.favourite ? {} : { color: 'gold' }
             return (
               <a className={`d-flex justify-content-between list-group-item list-group-item-action ${active}`} key={article.id} id="list-settings-list" data-toggle="list" href={`#list-${article.id}`} role="tab" aria-controls="settings"
                 style={titleWidthStyle}>
-                <i className="lar la-star pt-1 mr-1" onClick={() => this.handleArticleFavourite(article.id)}></i>
+                <i className="las la-star pt-1 mr-1"
+                  onClick={() => this.handleArticleFavourite(article.id)}
+                  style={favouriteStyle}></i>
                 <div>{article.title}</div>
                 <div className="d-flex flex-column">
                   <i className="las la-trash-alt" onClick={() => this.handleArticleDelete(article.id)}></i>

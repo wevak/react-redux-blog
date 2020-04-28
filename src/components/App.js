@@ -1,8 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router } from "react-router-dom"
 import { connect } from 'react-redux'
-import PublicRoutes from './routes/public'
-import AuthorizedRoutes from './routes/authorized'
+import PublicRoutes from '../routes/public'
+import AuthorizedRoutes from '../routes/authorized'
 
 /* Todos
 1.React-Redux Done
@@ -28,10 +27,10 @@ import AuthorizedRoutes from './routes/authorized'
 const App = (props) => {
   const { isLogged } = props
   return (
-    <Router>
+    <div>
       {isLogged ? <AuthorizedRoutes /> : <PublicRoutes />}
-    </Router>
-  );
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
