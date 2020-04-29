@@ -1,4 +1,4 @@
-import { ARTICLE_CREATE, ARTICLE_DELETE, ARTICLE_UPDATE, ARTICLE_TRASH_READ,
+import { ARTICLE_CREATE, ARTICLE_DELETE, ARTICLE_UPDATE, ARTICLE_TRASH_READ, ARTICLE_TRASH_RESTORE,
    ARTICLE_READ, ARTICLE_RESET, ARTICLE_FAVOURITE } from '../actions/articleActions'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -37,4 +37,9 @@ export const articleFavourite = articleId => ({
   payload: {
     articleId
   }
+})
+
+export const articleTrashRestore = id => ({
+  type: ARTICLE_TRASH_RESTORE,
+  payload: {id}
 })

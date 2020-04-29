@@ -2,7 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import ArticleFormContainer from './ArticleFormContainer'
 import { connect } from 'react-redux'
-import { userLogout } from '../redux';
+import { userLogout, articleReset } from '../redux';
 import { NavLink } from 'react-router-dom'
 
 class Sidebar extends React.Component{
@@ -20,7 +20,10 @@ class Sidebar extends React.Component{
         <div className="d-flex flex-column position-fixed bg-dark" style={{ height: "100%", width: 190 }}>
           <ul className="nav d-flex justify-content-around mt-3 text-white">
             <li className="nav-item">
-              <button className="border-0 nav-link text-white bg-dark" onClick={this.handleFormShow}>
+              <button className="border-0 nav-link text-white bg-dark" onClick={() => {
+                this.handleFormShow();
+                this.props.dispatch(articleReset());
+              }}>
                 <i className="las la-plus"></i>
               </button>
             </li>
@@ -40,7 +43,7 @@ class Sidebar extends React.Component{
           </ul>
           <ul className="nav flex-column my-3 text-white">
             <li className="nav-item">
-              <NavLink to="/" exact 
+              <NavLink to="/" exact
                 activeClassName="active"
                 className="btn btn-block btn-dark text-left"
               >
@@ -61,6 +64,7 @@ class Sidebar extends React.Component{
               <NavLink to="/favourites" exact
                 activeClassName="active"
                 className="btn btn-block btn-dark text-left" 
+                onClick={() => this.props.dispatch(articleReset())}
               >
                 <i className="las mr-2 la-star"></i>
                 Favourites
@@ -70,6 +74,7 @@ class Sidebar extends React.Component{
               <NavLink to="/trash" exact
                 activeClassName="active"
                 className="btn btn-block btn-dark text-left"
+                onClick={() => this.props.dispatch(articleReset())}
               >
                 <i className="las mr-2 la-trash-alt"></i>
                 Trash

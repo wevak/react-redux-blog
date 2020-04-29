@@ -1,5 +1,5 @@
 import {
-   ARTICLE_CREATE, ARTICLE_READ, ARTICLE_UPDATE, ARTICLE_FAVOURITE,
+   ARTICLE_CREATE, ARTICLE_READ, ARTICLE_UPDATE, ARTICLE_FAVOURITE, ARTICLE_TRASH_RESTORE,
    ARTICLE_DELETE, ARTICLE_LOAD, ARTICLE_RESET, ARTICLE_TRASH_READ } from '../actions/articleActions'
 
 const defaultState = {
@@ -73,15 +73,17 @@ const articleReducer = (state = defaultState, action) => {
         tempArticle: state.articles.find(article => {
           return article.id === action.payload.id
         })
-    }
+      }
 
     case ARTICLE_TRASH_READ:
+      const articleRead = state.trash.find(article => {
+        return article.id === action.payload.id
+      }) || defaultState.tempArticle
+      
       return {
         ...state,
-        tempArticle: state.trash.find(article => {
-          return article.id === action.payload.id
-        })
-    }
+        tempArticle: articleRead
+      }
     
     case ARTICLE_UPDATE:         //return all articles interpolating updated article
       return {
@@ -146,6 +148,19 @@ const articleReducer = (state = defaultState, action) => {
           }
         }
       }
+    
+    case ARTICLE_TRASH_RESTORE: {
+      console.log(action)
+      return {
+        ...state,
+        articles: [
+          ...state.articles,
+          state.trash.find(article => article.id === action.payload.id)
+        ],
+        trash: state.trash.filter(article => article.id !== action.payload.id)
+      }
+    }
+
     default: return state
   }
 }
