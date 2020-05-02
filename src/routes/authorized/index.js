@@ -1,18 +1,20 @@
 import React from 'react'
-import ArticleRouter from './articleRoute'
+import ArticleRoute from './articleRoute'
 import Sidebar from '../../container/Sidebar'
-import ProfileRouter from './profileRoute'
+import ProfileRoute from './profileRoute'
 import FavouritesRoute from './favouritesRoute'
 import TrashRoute from './trashRoute'
+import CategoryRoute from './categoryRoute'
 
 function AuthorizedRoutes() {
   return (
     <div>
       <Sidebar />
-      <ArticleRouter />
-      <ProfileRouter />
+      <ArticleRoute />
+      <ProfileRoute />
       <FavouritesRoute />
       <TrashRoute />
+      <CategoryRoute />
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Profile from '../../container/Profile'
 
-function ProfileRouter() {
+function ProfileRoute() {
   return (
     <Switch>
       <Route exact path="/profile" component={Profile} />
@@ -10,4 +10,4 @@ function ProfileRouter() {
   )
 }
 
-export default ProfileRouter
+export default ProfileRoute

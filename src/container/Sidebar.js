@@ -3,7 +3,9 @@ import $ from 'jquery'
 import ArticleFormContainer from './ArticleFormContainer'
 import { connect } from 'react-redux'
 import { userLogout, articleReset } from '../redux';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom'
+import Category from './Category/Category'
+import Article from './Articles/Article'
 
 class Sidebar extends React.Component{
   constructor(props){
@@ -84,13 +86,17 @@ class Sidebar extends React.Component{
           <div className="mb-2">
             <div className="text-secondary ml-3 mb-1">Categories</div>
             <ul className="nav flex-column">
-              {categories.map((category, indx) => {
+              {categories.map((category, indx) => {     //Render Navlinks for every array of categories
                 return (
                   <li key={indx} className="nav-item">
-                    <button className="btn btn-block btn-dark text-left">
+                    <NavLink to={`/category/${category.toLowerCase()}`} exact
+                      activeClassName="active"
+                      className="btn btn-block btn-dark text-left"
+                      // onClick={() => this.props.dispatch(articleReset())}
+                    >
                       <i className="las mr-2 la-folder"></i>
                       {category}
-                    </button>
+                    </NavLink>
                   </li>
                 )
               })}
@@ -101,6 +107,8 @@ class Sidebar extends React.Component{
           </div>
         </div>
         <ArticleFormContainer />
+        {/* <Route exact path="/category:categoryId" component={Category} /> */}
+        {/* <Route exact path="/" component={Article} /> */}
       </div>
     )
   }

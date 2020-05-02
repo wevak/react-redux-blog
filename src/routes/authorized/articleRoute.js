@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Article from '../../container/Articles/Article'
 
-function ArticleRouter() {
+function ArticleRoute() {
   return (
     <Switch>
       <Route exact path="/" component={Article} />
@@ -10,4 +10,4 @@ function ArticleRouter() {
   )
 }
 
-export default ArticleRouter
+export default ArticleRoute
