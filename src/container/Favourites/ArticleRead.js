@@ -15,11 +15,8 @@ const ArticleRead = props => {
   )
 }
 
-const mapStateToProps = state => {
-  const { article } = state
-  return {
-    article: article.tempArticle
-  }
-}
+const mapStateToProps = state => ({
+    article: state.article.tempArticle
+  })
 
 export default connect(mapStateToProps)(ArticleRead)

@@ -3,9 +3,7 @@ import $ from 'jquery'
 import ArticleFormContainer from './ArticleFormContainer'
 import { connect } from 'react-redux'
 import { userLogout, articleReset } from '../redux';
-import { NavLink, Route } from 'react-router-dom'
-import Category from './Category/Category'
-import Article from './Articles/Article'
+import { NavLink } from 'react-router-dom'
 
 class Sidebar extends React.Component{
   constructor(props){
@@ -92,7 +90,7 @@ class Sidebar extends React.Component{
                     <NavLink to={`/category/${category.toLowerCase()}`} exact
                       activeClassName="active"
                       className="btn btn-block btn-dark text-left"
-                      // onClick={() => this.props.dispatch(articleReset())}
+                      onClick={() => this.props.dispatch(articleReset())}
                     >
                       <i className="las mr-2 la-folder"></i>
                       {category}
@@ -107,8 +105,6 @@ class Sidebar extends React.Component{
           </div>
         </div>
         <ArticleFormContainer />
-        {/* <Route exact path="/category:categoryId" component={Category} /> */}
-        {/* <Route exact path="/" component={Article} /> */}
       </div>
     )
   }
