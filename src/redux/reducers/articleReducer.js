@@ -72,17 +72,17 @@ const articleReducer = (state = defaultState, action) => {
         ...state,
         tempArticle: state.articles.find(article => {
           return article.id === action.payload.id
-        })
+        }) || defaultState.tempArticle
       }
 
     case ARTICLE_TRASH_READ:
-      const articleRead = state.trash.find(article => {
+      const articleTrashRead = state.trash.find(article => {
         return article.id === action.payload.id
       }) || defaultState.tempArticle
       
       return {
         ...state,
-        tempArticle: articleRead
+        tempArticle: articleTrashRead
       }
     
     case ARTICLE_UPDATE:         //return all articles interpolating updated article
@@ -150,7 +150,6 @@ const articleReducer = (state = defaultState, action) => {
       }
     
     case ARTICLE_TRASH_RESTORE: {
-      console.log(action)
       return {
         ...state,
         articles: [

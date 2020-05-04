@@ -8,7 +8,7 @@ const TrashTitles = props => {
   return (
     <div className="d-flex position-fixed bg-light" style={{ left: 190, height: "100%", maxWidth: 240, backgroundColor: "#e5e5e5" }}>
       <div className="list-group">
-        {articles.map((article, indx, arr) => {
+        {articles.map(article => {
           const active = props.activeArticleTitleId !== article.id ? '' : 'active'
           return (
             <button key={article.id}

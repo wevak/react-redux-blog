@@ -29,9 +29,9 @@ class CategoryTitles extends React.Component {
     const titleWidthStyle = { width: 240 }
     return (
       <div className="d-flex position-fixed bg-light" style={{ left: 190, height: "100%", maxWidth: 240, backgroundColor: "#e5e5e5" }}>
-        <div className="list-group list-group-flush" /* id="list-tab" role="tablist" */>
-          {articles.map((article, indx) => {
-            const active = indx !== 0 ? '' : 'active' //First article in the list is set active
+        <div className="list-group list-group-flush" >
+          {articles.map(article => {
+            const active = this.props.activeArticleTitleId !== article.id ? '' : 'active'
             const favouriteStyle = !article.favourite ? {} : { color: 'gold' }
             return (
               <button
@@ -59,9 +59,9 @@ class CategoryTitles extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const { article } = state
   return {
-    articles: article.articles.filter(article => article.category.toLowerCase() === ownProps.match.params.categoryId)
+    articles: article.articles.filter(article => article.category.toLowerCase() === ownProps.match.params.categoryId),
+    activeArticleTitleId: article.tempArticle.id || ''
   }
 }
 
 export default connect(mapStateToProps)(CategoryTitles)
-// export default CategoryTitles
