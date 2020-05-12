@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as serviceWorker from './serviceWorker'
 import store from './redux/store'
-import Root from './components/Root'
+import Root from './presentational/Root'
 
 ReactDOM.render(<Root store={store} />, document.getElementById('root'))
 
