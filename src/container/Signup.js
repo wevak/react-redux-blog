@@ -1,5 +1,5 @@
 import React from 'react'
-import RegistrationForm from '../components/RegistrationForm'
+import RegistrationForm from '../presentational/RegistrationForm'
 import $ from 'jquery'
 import { userRegistration } from '../redux'
 import { connect } from 'react-redux'

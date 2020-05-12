@@ -1,5 +1,5 @@
 import React from 'react'
-import ArticleForm from '../components/ArticleForm'
+import ArticleForm from '../presentational/ArticleForm'
 import { articleCreate, articleUpdate, articleReset } from '../redux'
 import { connect } from 'react-redux'
 import $ from 'jquery'

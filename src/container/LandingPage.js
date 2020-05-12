@@ -1,6 +1,6 @@
 import React from 'react'
 import images from '../assets/images'
-import Navbar from '../components/Navbar'
+import Navbar from '../presentational/Navbar'
 import Login from './Login'
 import Signup from './Signup'
 

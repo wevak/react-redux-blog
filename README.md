@@ -2,28 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Introduction
 
-This is a basic React-Redux Blog App with a great UI and utilizes Redux-Form React-Router & React-Redux.
+This is a basic React-Redux Blog App with a great UI and utilizes Redux-Form, React-Router for routing, React-Redux for redux binding & React-helmet for managing document head.
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Deployed on Heroku
+[https://redux-blog-app.herokuapp.com/](https://redux-blog-app.herokuapp.com/)

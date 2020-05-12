@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { userLogin } from '../redux'
 import $ from 'jquery'
-import LoginForm from '../components/LoginForm'
+import LoginForm from '../presentational/LoginForm'
 
 class Login extends React.Component {
   constructor(props) {

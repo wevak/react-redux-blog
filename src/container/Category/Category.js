@@ -1,12 +1,12 @@
 import React from 'react'
 import CategoryTitles from './CategoryTitlesContainer'
-import CategoryContainer from './CategoryContainer'
+import ArticleRead from '../ArticleRead'
 
 function Category({ match }) {
   return (
     <div className="position-relative">
       <CategoryTitles match={match}/>
-      <CategoryContainer />
+      <ArticleRead />
     </div>
   )
 }
