@@ -4,10 +4,10 @@ import ArticleRead from '../ArticleRead'
 
 function Favourites(props){
   return (
-    <>
+    <div>
       <FavouriteTitles />
       <ArticleRead />
-    </>
+    </div>
   )
 }
 

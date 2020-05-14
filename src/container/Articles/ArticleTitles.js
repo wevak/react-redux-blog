@@ -4,7 +4,7 @@ import TitlesBar from '../../presentational/TitlesBar'
 const mapStateToProps = state => {
   const { article, session } = state
   return {
-    articles: article.articles.filter(article => article.favourite && article.author.id === session.currentlyLoggedIn.id),
+    articles: article.articles.filter(article => article.author.id === session.currentlyLoggedIn.id),
     activeArticleTitleId: article.tempArticle.id
   }
 }

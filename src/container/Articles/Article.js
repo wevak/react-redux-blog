@@ -1,12 +1,12 @@
 import React from 'react'
-import ArticleTitles from './ArticleTitlesContainer'
-import ArticleContainer from './ArticleContainer'
+import ArticleTitles from './ArticleTitles'
+import ArticleRead from '../ArticleRead'
 
 function Article() {
   return (
-    <div className="position-relative">
+    <div>
       <ArticleTitles />
-      <ArticleContainer />
+      <ArticleRead />
     </div>
   )
 }

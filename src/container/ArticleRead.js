@@ -6,7 +6,6 @@ const ReactMarkdown = require('react-markdown')
 
 const ArticleRead = props => {
   const { article } = props
-  console.log(props)
   return (
     <div className="position-absolute p-3" style={{ left: 430, lineHeight: "1.7rem" }}>
       <SEO title={article.title} location={props.match.url} author={article.author.name}/>

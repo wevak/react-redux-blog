@@ -4,10 +4,10 @@ import ArticleRead from '../ArticleRead'
 
 function Trash(props){
   return (
-    <>
+    <div>
       <TrashTitles />
       <ArticleRead />
-    </>
+    </div>
   )
 }
 
